@@ -27,10 +27,40 @@ class UiTest extends BaseTest {
 
     @Test
     public void authTest2() {
-        step("Открыть страницу авторизации", () -> {
-            step("Нажать на кнопку 'login'", () ->
-                    clickByXpath("//a[@href='/login']")
+        step("1. Открыть страницу авторизации", () -> {
+            step("1.1. Нажать на кнопку 'login'", () -> {
+                clickByXpath("//a[@href='/login']");
+                expect("Просто проверить что-то во внутреннем шаге", () ->
+                        checkXpath("//input[@name='login']")
+                );
+                step("1.1.1 И еще один внутренний шаг", () -> {
+                    expect("И еще одна внутренняя проверка", () ->
+                            System.out.println()
+                    );
+                });
+            });
+            step("1.2. Что-нибудь сделать", () -> {
+
+            });
+            expect("Поле ввода логина должно быть видимым", () ->
+                checkXpath("//input[@name='login']")
             );
+            expect("Поле ввода пароля должно быть видимым", () ->
+                checkXpath("//input[@name='password']")
+            );
+            screenshot();
+        });
+        step("2. Шаг второй", () -> {
+            step("2.1 Нажать на кнопку 'login'", () -> {
+                expect("Просто проверить что-то во внутреннем шаге", () ->
+                        checkXpath("//input[@name='login']")
+                );
+                step("2.2. И еще один внутренний шаг", () -> {
+                    expect("И еще одна внутренняя проверка", () ->
+                            System.out.println()
+                    );
+                });
+            });
             expect("Поле ввода логина должно быть видимым", () ->
                     checkXpath("//input[@name='login']")
             );
