@@ -26,6 +26,22 @@ class UiTest extends BaseTest {
     }
 
     @Test
+    public void authTest1() {
+        step("Открыть страницу авторизации", () -> {
+            clickByXpath("//a[@href='/login']");
+
+            check("Страница авторизации должна быть открыта", () -> {
+                step("Поле ввода логина должно быть видимым", () ->
+                        checkXpath("//input[@name='login']")
+                );
+                step("Поле ввода пароля должно быть видимым", () ->
+                        checkXpath("//input[@name='password']")
+                );
+            });
+        });
+    }
+
+    @Test
     public void authTest2() {
         step("1. Открыть страницу авторизации", () -> {
             step("1.1. Нажать на кнопку 'login'", () -> {
@@ -61,10 +77,12 @@ class UiTest extends BaseTest {
                     );
                 });
             });
-            expect("Поле ввода логина должно быть видимым", () ->
+        });
+        step("Проверка результата", () -> {
+            step("Поле ввода логина должно быть видимым", () ->
                     checkXpath("//input[@name='login']")
             );
-            expect("Поле ввода пароля должно быть видимым", () ->
+            step("Поле ввода пароля должно быть видимым", () ->
                     checkXpath("//input[@name='password']")
             );
             screenshot();

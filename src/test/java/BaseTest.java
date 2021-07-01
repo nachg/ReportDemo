@@ -54,7 +54,7 @@ public class BaseTest {
         StepResult result = new StepResult()
                 .setName(msg)
                 .setStatus(Status.PASSED)
-                .setDescription("expect");
+                .setDescription("expected");
         Allure.getLifecycle().startStep(uuid, result);
         try {
             runnable.run();
